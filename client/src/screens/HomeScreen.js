@@ -1,18 +1,18 @@
 import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, ScrollView, TouchableOpacity} from 'react-native';
+
+import Product from '../components/Product';
 
 function HomeScreen({navigation}) {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
+    <ScrollView style={{flex: 1}}>
+      <Product />
 
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('ProductDetails');
-        }}>
-        <Text>Button</Text>
-      </TouchableOpacity>
-    </View>
+        }}></TouchableOpacity>
+    </ScrollView>
   );
 }
 

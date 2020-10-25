@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, SafeAreaView} from 'react-native';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 import {

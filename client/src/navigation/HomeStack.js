@@ -1,9 +1,7 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {TouchableOpacity, Image} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Appbar, Avatar} from 'react-native-paper';
-
-import {StackActions} from '@react-navigation/native';
 
 import Home from '../screens/HomeScreen';
 import ProductDetails from '../screens/ProductDetails';
@@ -34,12 +32,10 @@ const Header = ({scene, previous, navigation}) => {
           onPress={() => {
             navigation.openDrawer();
           }}>
-          <Avatar.Image
+          <MaterialCommunityIcons
+            name="sort-variant-lock-open"
+            color="#40a37a"
             size={40}
-            source={{
-              uri:
-                'https://pbs.twimg.com/profile_images/952545910990495744/b59hSXUd_400x400.jpg',
-            }}
           />
         </TouchableOpacity>
       )}
@@ -48,7 +44,7 @@ const Header = ({scene, previous, navigation}) => {
           previous ? (
             title
           ) : (
-            <MaterialCommunityIcons name="twitter" size={40} color="red" />
+            <Avatar.Image size={40} source={require('../assets/logo.png')} />
           )
         }
       />
