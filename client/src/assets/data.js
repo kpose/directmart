@@ -12,7 +12,7 @@ export default data = {
     {
       name: 'Slim shirt',
       price: 1356,
-      image: require('../assets/p1.jpg'),
+      image: require('../assets/logo.png'),
       rating: 4.5,
       reviews: 10,
     },
