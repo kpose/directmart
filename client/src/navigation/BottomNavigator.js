@@ -1,6 +1,6 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+//import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import HomeStack from './HomeStack';
 import Cart from '../screens/Cart';
@@ -13,7 +13,7 @@ const BottomNavigator = () => {
       initialRouteName="HomeStack"
       shifting={true}
       activeColor="#f0edf6"
-      inactiveColor="#3e2465"
+      inactiveColor="#000"
       style={{backgroundColor: 'tomato'}}
       sceneAnimationEnabled={false}>
       <Tab.Screen

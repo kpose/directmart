@@ -1,6 +1,14 @@
 import * as React from 'react';
+import {FlatList} from 'react-native';
 import {Surface, Text} from 'react-native-paper';
-import {StyleSheet, Dimensions, Image, View} from 'react-native';
+import {
+  StyleSheet,
+  Dimensions,
+  Image,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+import data from '../assets/data';
 
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
@@ -8,15 +16,35 @@ const screenHeight = Dimensions.get('screen').height;
 const width = Math.round(screenWidth / 2.3);
 const height = Math.round(screenHeight / 3.3);
 
+import * as RootNavigation from '../navigation/Navigating';
+
 const Product = () => (
-  <Surface style={styles.surface}>
-    <Image style={styles.productImage} source={require('../assets/p1.jpg')} />
-    <View style={styles.productDetails}>
-      <Text> Shirts </Text>
-      <Text> Gucci </Text>
-      <Text> $500 </Text>
-    </View>
-  </Surface>
+  <View
+    style={{
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+    }}>
+    {data.products.map((product) => (
+      <TouchableOpacity
+        onPress={() => RootNavigation.navigate('ProductDetails', {product})}>
+        <Surface style={styles.surface}>
+          <Image style={styles.productImage} source={product.image} />
+          <View style={styles.productDetails}>
+            <Text style={{fontWeight: 'bold', fontSize: 20}}>
+              {product.name}
+            </Text>
+            <Text style={{fontWeight: 'bold', fontSize: 15}}>
+              ${product.price}
+            </Text>
+            <Text>
+              {product.rating} Stars, {product.reviews} Reviews
+            </Text>
+          </View>
+        </Surface>
+      </TouchableOpacity>
+    ))}
+  </View>
 );
 
 export default Product;
@@ -26,12 +54,14 @@ const styles = StyleSheet.create({
     padding: 8,
     height: height,
     marginTop: 5,
-    marginLeft: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
     width: width,
     borderRadius: 10,
-    alignItems: 'center',
+    //alignItems: 'center',
     justifyContent: 'center',
-    elevation: 4,
+    elevation: 8,
   },
   productImage: {
     flex: 4,
@@ -42,9 +72,11 @@ const styles = StyleSheet.create({
     height: undefined,
   },
   productDetails: {
-    flexDirection: 'row',
-    flex: 1,
+    //flexDirection: 'row',
+    //flex: 1,
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
+    margin: 5,
     //marginTop: 10,
   },
 });

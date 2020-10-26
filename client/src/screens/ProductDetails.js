@@ -1,7 +1,8 @@
 import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 
-function ProductDetails({navigation}) {
+function ProductDetails({navigation, route}) {
+  const {product} = route.params;
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Text>ProductDetails Screen</Text>
@@ -12,6 +13,7 @@ function ProductDetails({navigation}) {
         }}>
         <Text>Button</Text>
       </TouchableOpacity>
+      <Text>{product.name}</Text>
     </View>
   );
 }

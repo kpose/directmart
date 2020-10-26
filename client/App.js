@@ -15,6 +15,8 @@ import {
   DarkTheme as NavigationDarkTheme,
 } from '@react-navigation/native';
 
+import {navigationRef} from './src/navigation/Navigating';
+
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
@@ -40,7 +42,7 @@ const App = () => {
 
   return (
     <PaperProvider>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <DrawerNavigator />
       </NavigationContainer>
     </PaperProvider>

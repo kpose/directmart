@@ -5,6 +5,7 @@ import {Appbar, Avatar} from 'react-native-paper';
 
 import Home from '../screens/HomeScreen';
 import ProductDetails from '../screens/ProductDetails';
+//import Product from '../components/Product'
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
