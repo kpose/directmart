@@ -1,2 +1,0 @@
-# directmart
-RN E-commerce
