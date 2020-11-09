@@ -1,7 +1,7 @@
 import React from 'react';
-import {Text, ScrollView, TouchableOpacity} from 'react-native';
+import {Text, ScrollView, View, TouchableOpacity} from 'react-native';
 
-import {navigationRef} from '../navigation/Navigating';
+//import {navigationRef} from '../navigation/Navigating';
 
 import Product from '../components/Product';
 

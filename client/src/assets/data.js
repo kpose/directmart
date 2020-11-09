@@ -10,6 +10,7 @@ export default data = {
     },
 
     {
+      id: 2,
       name: 'Slim shirt',
       price: 1356,
       image: require('../assets/logo.png'),
@@ -18,6 +19,7 @@ export default data = {
     },
 
     {
+      id: 3,
       name: 'Slim shirt',
       price: 500,
       image: require('../assets/p1.jpg'),
@@ -26,6 +28,7 @@ export default data = {
     },
 
     {
+      id: 4,
       name: 'Slim shirt',
       price: 3550,
       image: require('../assets/p1.jpg'),
@@ -34,6 +37,7 @@ export default data = {
     },
 
     {
+      id: 5,
       name: 'Slim shirt',
       price: 890,
       image: require('../assets/p1.jpg'),

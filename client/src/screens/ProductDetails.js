@@ -10,7 +10,7 @@ function ProductDetails({navigation, route}) {
         <Image style={styles.image} source={product.image} />
       </View>
       <View style={{alignItems: 'center'}}>
-        <View style={styles.detailsView}>
+        {/* <View style={styles.detailsView}>
           <Text
             style={{
               fontSize: 30,
@@ -28,7 +28,7 @@ function ProductDetails({navigation, route}) {
             }}>
             Price: ${product.price}
           </Text>
-        </View>
+        </View> */}
         <View style={styles.detailsView}>
           <Text
             style={{
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
   imageView: {
     flex: 3,
     alignItems: 'center',
+    marginTop: 3,
     //elevation: 10,
   },
   cartView: {
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
   detailsView: {
     flexDirection: 'row',
     marginTop: 10,
-    marginBottom: 10,
+    //marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center',
     flexWrap: 'wrap',

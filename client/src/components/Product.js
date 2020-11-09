@@ -27,6 +27,7 @@ const Product = () => (
     }}>
     {data.products.map((product) => (
       <TouchableOpacity
+        id={product.id}
         onPress={() => RootNavigation.navigate('ProductDetails', {product})}>
         <Surface style={styles.surface}>
           <Image style={styles.productImage} source={product.image} />
