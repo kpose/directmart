@@ -1,5 +1,5 @@
-import * as React from 'react';
-import {FlatList} from 'react-native';
+import React, {useState, useEffect} from 'react';
+//import {FlatList} from 'react-native';
 import {Surface, Text} from 'react-native-paper';
 import {
   StyleSheet,
@@ -8,7 +8,8 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import data from '../assets/data';
+//import data from '../assets/data';
+import axios from 'axios';
 
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
@@ -18,37 +19,81 @@ const height = Math.round(screenHeight / 3.3);
 
 import * as RootNavigation from '../navigation/Navigating';
 
-const Product = () => (
-  <View
-    style={{
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-    }}>
-    {data.products.map((product) => (
-      <TouchableOpacity
-        key={product.id}
-        onPress={() => RootNavigation.navigate('ProductDetails', {product})}>
-        <Surface style={styles.surface}>
-          <Image style={styles.productImage} source={product.image} />
-          <View style={styles.productDetails}>
-            <Text style={{fontWeight: 'bold', fontSize: 20}}>
-              {product.name}
-            </Text>
-            <Text style={{fontWeight: 'bold', fontSize: 15}}>
-              ${product.price}
-            </Text>
-            <Text>
-              {product.rating} Stars, {product.reviews} Reviews
-            </Text>
-          </View>
-        </Surface>
-      </TouchableOpacity>
-    ))}
-  </View>
-);
+export default function Product(props) {
+  const [products, setProducts] = useState([]);
 
-export default Product;
+  /* useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios('http://127.0.0.1:5000/api/products');
+
+      setProducts(result.data);
+      console.log(products);
+    };
+
+    fetchData();
+  }, []); */
+
+  /* useEffect(() => {
+    const fetchData = async () => {
+      const {data} = await axios.get('https://reactnative.dev/movies.json');
+      setProducts(data);
+      console.log(products);
+    };
+    fetchData();
+    return () => {
+      //
+    };
+  }, []); */
+
+  useEffect(() => {
+    getMoviesFromApiAsync();
+    return () => {
+      //
+    };
+  }, []);
+
+  const getMoviesFromApiAsync = async () => {
+    try {
+      let response = await fetch('http://127.0.0.1:5000/api/products');
+      let json = await response.json();
+      //return json.movies;
+      setProducts(json);
+      console.log(products);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      }}>
+      {products.map((product) => (
+        <TouchableOpacity
+          key={product.id}
+          onPress={() => RootNavigation.navigate('ProductDetails', {product})}>
+          <Surface style={styles.surface}>
+            <Image style={styles.productImage} source={product.image} />
+            <View style={styles.productDetails}>
+              <Text style={{fontWeight: 'bold', fontSize: 20}}>
+                {product.name}
+              </Text>
+              <Text style={{fontWeight: 'bold', fontSize: 15}}>
+                ${product.price}
+              </Text>
+              <Text>
+                {product.rating} Stars, {product.reviews} Reviews
+              </Text>
+            </View>
+          </Surface>
+        </TouchableOpacity>
+      ))}
+    </View>
+  );
+}
 
 const styles = StyleSheet.create({
   surface: {
