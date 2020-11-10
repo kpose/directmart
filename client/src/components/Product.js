@@ -22,47 +22,23 @@ import * as RootNavigation from '../navigation/Navigating';
 export default function Product(props) {
   const [products, setProducts] = useState([]);
 
-  /* useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios('http://127.0.0.1:5000/api/products');
-
-      setProducts(result.data);
-      console.log(products);
-    };
-
-    fetchData();
-  }, []); */
-
-  /* useEffect(() => {
-    const fetchData = async () => {
-      const {data} = await axios.get('https://reactnative.dev/movies.json');
-      setProducts(data);
-      console.log(products);
-    };
-    fetchData();
-    return () => {
-      //
-    };
-  }, []); */
-
-  useEffect(() => {
-    getMoviesFromApiAsync();
-    return () => {
-      //
-    };
-  }, []);
-
-  const getMoviesFromApiAsync = async () => {
+  const fetchData = async () => {
     try {
       let response = await fetch('http://127.0.0.1:5000/api/products');
-      let json = await response.json();
-      //return json.movies;
-      setProducts(json);
+      let data = await response.json();
+      setProducts(data);
       console.log(products);
     } catch (error) {
       console.error(error);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+    return () => {
+      //
+    };
+  }, []);
 
   return (
     <View
