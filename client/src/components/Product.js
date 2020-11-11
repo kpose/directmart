@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react';
-//import {FlatList} from 'react-native';
 import {Surface, Text} from 'react-native-paper';
 import {
   StyleSheet,
   Dimensions,
   Image,
   View,
+  ActivityIndicator,
   TouchableOpacity,
 } from 'react-native';
-//import data from '../assets/data';
-import axios from 'axios';
+import {useSelector, useDispatch} from 'react-redux';
 
 const screenWidth = Dimensions.get('screen').width;
 const screenHeight = Dimensions.get('screen').height;
@@ -18,29 +17,36 @@ const width = Math.round(screenWidth / 2.3);
 const height = Math.round(screenHeight / 3.3);
 
 import * as RootNavigation from '../navigation/Navigating';
+import {listProducts} from '../redux/actions/productActions';
 
 export default function Product(props) {
-  const [products, setProducts] = useState([]);
+  //const [products, setProducts] = useState([]);
+  const productList = useSelector((state) => state.productList);
+  const {products, error, loading} = productList;
+  const dispatch = useDispatch();
 
-  const fetchData = async () => {
+  /* const fetchData = async () => {
     try {
       let response = await fetch('http://127.0.0.1:5000/api/products');
       let data = await response.json();
       setProducts(data);
-      console.log(products);
     } catch (error) {
       console.error(error);
     }
-  };
+  }; */
 
   useEffect(() => {
-    fetchData();
+    dispatch(listProducts());
     return () => {
       //
     };
   }, []);
 
-  return (
+  return loading ? (
+    <ActivityIndicator size="large" color="#00ff00" />
+  ) : error ? (
+    console.log(error)
+  ) : (
     <View
       style={{
         flexDirection: 'row',
@@ -52,7 +58,7 @@ export default function Product(props) {
           key={product.id}
           onPress={() => RootNavigation.navigate('ProductDetails', {product})}>
           <Surface style={styles.surface}>
-            <Image style={styles.productImage} source={product.image} />
+            <Image style={styles.productImage} /* source={product.image} */ />
             <View style={styles.productDetails}>
               <Text style={{fontWeight: 'bold', fontSize: 20}}>
                 {product.name}

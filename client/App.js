@@ -2,6 +2,9 @@ import 'react-native-gesture-handler';
 import React, {useState} from 'react';
 import {StyleSheet, SafeAreaView} from 'react-native';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
+import {Provider} from 'react-redux';
+
+import store from './src/redux/store';
 
 import {
   DarkTheme as PaperDarkTheme,
@@ -41,11 +44,13 @@ const App = () => {
   }; */
 
   return (
-    <PaperProvider>
-      <NavigationContainer ref={navigationRef}>
-        <DrawerNavigator />
-      </NavigationContainer>
-    </PaperProvider>
+    <Provider store={store}>
+      <PaperProvider>
+        <NavigationContainer ref={navigationRef}>
+          <DrawerNavigator />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   );
 };
 
