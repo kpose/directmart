@@ -1,10 +1,28 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {useSelector, useDispatch} from 'react-redux';
 import {Surface, Text} from 'react-native-paper';
+import {detailsProduct} from '../redux/actions/productActions';
 
-function ProductDetails({navigation, route}) {
-  const {product} = route.params;
-  return (
+function ProductDetails(props) {
+  //const {product} = route.params;
+
+  const productDetails = useSelector((state) => state.productDetails);
+  const {product, error, loading} = productDetails;
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(detailsProduct(props.match.params.id));
+    return () => {
+      //cleanup
+    };
+  }, []);
+
+  return loading ? (
+    <ActivityIndicator size="large" color="#00ff00" />
+  ) : error ? (
+    console.log(error)
+  ) : (
     <View style={{flex: 1}}>
       <View style={styles.imageView}>
         <Image style={styles.image} source={product.image} />

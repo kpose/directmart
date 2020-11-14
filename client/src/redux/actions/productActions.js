@@ -1,4 +1,7 @@
 import {
+  PRODUCT_DETAILS_FAIL,
+  PRODUCT_DETAILS_REQUEST,
+  PRODUCT_DETAILS_SUCCESS,
   PRODUCT_LIST_FAIL,
   PRODUCT_LIST_REQUEST,
   PRODUCT_LIST_SUCCESS,
@@ -15,4 +18,15 @@ const listProducts = () => async (dispatch) => {
   }
 };
 
-export {listProducts};
+const detailsProduct = (productId) => (dispatch) => {
+  try {
+    dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId});
+    let response = fetch('http://127.0.0.1:5000/api/products' + productId);
+    let data = response.json();
+    dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data});
+  } catch (error) {
+    dispatch({type: PRODUCT_DETAILS_FAIL, payload: error.message});
+  }
+};
+
+export {listProducts, detailsProduct};
